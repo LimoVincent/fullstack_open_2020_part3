@@ -1,7 +1,10 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
+const cors = require('cors')
+
 const PORT = 3001
+app.use(cors())
 app.use(express.json())
 
 morgan.token('data', (req) => JSON.stringify(req.body))

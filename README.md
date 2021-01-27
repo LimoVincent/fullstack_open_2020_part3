@@ -58,11 +58,10 @@ Describe your project
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
+- 
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+
 
 ## :white_check_mark: Requirements ##
 
@@ -78,10 +77,10 @@ $ git clone https://github.com/{{LimoVincent}}/fullstack_open_part3
 $ cd fullstack_open_part3
 
 # Install dependencies
-$ yarn
+$ npm
 
 # Run the project
-$ yarn start
+$ npm start
 
 # The server will initialize in the <http://localhost:3000>
 ```
@@ -91,7 +90,7 @@ $ yarn start
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/{{LimoVincent}}" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/{{LimoVincent}}" target="_blank">Vincent Limo</a>
 
 &#xa0;
 
