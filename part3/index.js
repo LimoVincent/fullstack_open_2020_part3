@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const PORT = 3001
+app.use(express.json())
 let persons = [
   {
     name: 'Arto Hellas',
@@ -34,7 +35,6 @@ let persons = [
   },
 ]
 
-
 app.get('/info', (req, res) => {
   res.send(
     `<p>phonebook has constact for ${
@@ -43,13 +43,31 @@ app.get('/info', (req, res) => {
   )
 })
 
+//GETINFO
 app.get('/', (req, res) => res.send('<h1>Hello homepage</h1>'))
 app.get('/api/persons', (req, res) => {
   res.json(persons)
 })
 
+//POST
+app.post('/api/persons', (req, res) => {
+  // const name = req.body.name,
+  // const number = req.body.number,
+  const person = {
+    name: req.body.name,
+    number: req.body.number,
+    id: persons.length + Math.floor(Math.random() * 100),
+  }
+  persons = [...persons, person]
+  res.json(person)
+})
 
+//GETALL
+app.get('/api/persons', (req, res) => {
+  res.json(persons)
+})
 
+//GETPERSON
 app.get('/api/persons/:id', (req, res) => {
   const _id = Number(req.params.id)
   const person = persons.find(({ id }) => id === _id)
@@ -60,10 +78,12 @@ app.get('/api/persons/:id', (req, res) => {
   }
 })
 
+//DELETEPERSON*
 app.delete('/api/persons/:id', (req, res) => {
   const _id = Number(req.params.id)
- persons =  persons.filter(({ id }) => id !== _id)
+  persons = persons.filter(({ id }) => id !== _id)
   res.status(404).end()
 })
 
+// LISTEN
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
