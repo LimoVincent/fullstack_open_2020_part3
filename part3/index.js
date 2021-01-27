@@ -34,11 +34,19 @@ const persons = [
   },
 ]
 
+const info = persons.length
+const date = new Date()
+
 app.get('/', (req, res) => res.send('<h1>Hello homepage</h1>'))
 
 app.get('/api/persons', (req, res) => {
   res.json(persons)
-  res.send('Hello')
+})
+
+app.get('/info', (req, res) => {
+  res.send(`<p>phonebook has constact for ${info} people</p><p> ${date}</p>`)
+  
+  
 })
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
