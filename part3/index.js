@@ -51,15 +51,31 @@ app.get('/api/persons', (req, res) => {
 
 //POST
 app.post('/api/persons', (req, res) => {
-  // const name = req.body.name,
-  // const number = req.body.number,
-  const person = {
-    name: req.body.name,
-    number: req.body.number,
-    id: persons.length + Math.floor(Math.random() * 100),
+  const body = req.body
+  const name = body.name
+  const number = body.number
+
+  if (name && number) {
+    const nameFound = persons.find((p) => p.name === name)
+    const numberFound = persons.find((p) => p.number === number)
+    if (nameFound) {
+      return res.status(400).json({ error: 'name must be unique' })
+    } else if (numberFound) {
+      return res.status(400).json({ error: 'number must be unique' })
+    } else {
+      const person = {
+        name: name,
+        number: number,
+        id: persons.length + Math.floor(Math.random() * 1000),
+      }
+      persons = [...persons, person]
+      return res.json(person)
+    }
+  } else {
+    return res.status(400).json({
+      error: 'name or number is missing',
+    })
   }
-  persons = [...persons, person]
-  res.json(person)
 })
 
 //GETALL
