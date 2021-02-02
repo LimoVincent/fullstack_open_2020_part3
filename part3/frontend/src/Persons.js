@@ -6,7 +6,7 @@ export const Persons = ({ persons, handleDelete }) => {
       <ol>
         {persons.map(({ name, number, id }) => (
           <li
-            key={name}
+            key={id}
             className=' d-flex  m-auto justify-content-between align-items-center'
           >
             <div>
