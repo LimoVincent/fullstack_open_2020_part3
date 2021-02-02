@@ -2,7 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const app = express()
 const cors = require('cors')
-
+// const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3001
 
 app.use(cors())
@@ -15,6 +15,8 @@ app.use(
   morgan(':method :url :status :res[content-length] - :response-time ms :data')
 )
 
+const pass =
+  'mongodb+srv://<username>:<password>@cluster0.ypsc6.mongodb.net/<dbname>?retryWrites=true&w=majority'
 let persons = [
   {
     name: 'Arto Hellas',
@@ -116,5 +118,3 @@ app.delete('/api/persons/:id', (req, res) => {
 
 // LISTEN
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
-
-
