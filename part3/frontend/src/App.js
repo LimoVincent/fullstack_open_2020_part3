@@ -72,24 +72,27 @@ const App = () => {
         const restpersons = personsCopy.filter(({ id }) => _id !== id)
 
         const updated = { ...toupdate, number: newNumber }
-        update(_id, updated).then((updated) => {
-          setPersons([...restpersons, updated])
-          setNewName('')
-          setNumber('')
-          setMessage('')
-
-          setSuccess(`Successfully updated contact`)
-        })
+        update(_id, updated)
+          .then((updated) => {
+            setPersons([...restpersons, updated])
+            setNewName('')
+            setNumber('')
+            setMessage('')
+            setSuccess(`Successfully updated contact`)
+          })
+          .catch((error) => setMessage(error.response.data.error.toString()))
       }
     } else {
       try {
-        create(newPerson).then((data) => {
-          setPersons([...personsCopy, data])
-          setNewName('')
-          setNumber('')
-          setMessage('')
-          setSuccess(`Successfully added ${newPerson.name}.`)
-        })
+        create(newPerson)
+          .then((data) => {
+            setPersons([...personsCopy, data])
+            setNewName('')
+            setNumber('')
+            setMessage('')
+            setSuccess(`Successfully added ${newPerson.name}.`)
+          })
+          .catch((error) => setMessage(error.response.data.error.toString()))
       } catch (error) {
         console.log(error)
       }

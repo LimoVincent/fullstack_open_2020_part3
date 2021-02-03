@@ -12,7 +12,6 @@ export const Persons = ({ persons, handleDelete }) => {
             <div>
               <p>{name}</p>
             </div>
-
             <div>
               <p>{number} </p>
             </div>
