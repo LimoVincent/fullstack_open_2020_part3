@@ -24,7 +24,7 @@
 
 ## :dart: About
 
-Part3 - React, Redux, Node.js, MongoDB, GraphQL and TypeScript With Helsinki University, Department of Computer Science. Frontend was bootstrap with createreactApp
+[Part3](https://fullstackopen.com/en/part3) of React, Redux, Node.js, MongoDB, GraphQL and TypeScript With Helsinki University, Department of Computer Science. Frontend was bootstrap with createreactApp
 
 <a href="https://phone-book2020.herokuapp.com/">Demo</a>
 
@@ -52,7 +52,7 @@ $ git clone https://github.com/LimoVincent/fullstack_open_2020_part3.git
 
 ```
 
-### Frontend
+### 1. Frontend
 
 ```bash
 #Dependacies
@@ -69,7 +69,7 @@ $ npm start
 
 ---
 
-### backend
+### 2. backend
 
 ```bash
 #Dependacies
