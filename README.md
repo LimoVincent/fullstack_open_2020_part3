@@ -49,7 +49,12 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 # Clone this project
 $ git clone https://github.com/LimoVincent/fullstack_open_2020_part3.git
 
-# Frontend
+
+```
+
+### Frontend
+
+```bash
 #Dependacies
 axios, bootstrap, react, react - bootstrap,
 # Access
@@ -60,8 +65,13 @@ $ npm start
 
 # The server will initialize in the <http://localhost:3000>
 
--------------------------------------------------
-# backend
+```
+
+---
+
+### backend
+
+```bash
 #Dependacies
 cors dotenv, express, mongoose, mongoose-unique-validator, morgan , eslint, nodemon,
 # Access
