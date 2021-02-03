@@ -22,22 +22,61 @@
 
 <br>
 
-## :dart: About ##
-  <a href="https://phone-book2020.herokuapp.com/">Demo</a>
+## :dart: About
 
+Part3 - React, Redux, Node.js, MongoDB, GraphQL and TypeScript With Helsinki University, Department of Computer Science. Frontend was bootstrap with createreactApp
 
-## :rocket: Technologies ##
+<a href="https://phone-book2020.herokuapp.com/">Demo</a>
+
+## :rocket: Technologies
 
 The following tools were used in this project:
-- [Node.js](https://nodejs.org/en/)
-- [React](https://reactjs.org/)
 
-## :white_check_mark: Requirements ##
+- [Node.js](https://nodejs.org/en/)
+  - [Express.js](https://expressjs.com/)
+- [React](https://reactjs.org/)
+- [MangoDB](https://www.mongodb.com/cloud/atlas)
+  - [Mongoosejs](https://mongoosejs.com/)
+
+## :white_check_mark: Requirements
 
 Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
 
+## :checkered_flag: Starting
 
-## :memo: License ##
+```bash
+
+# Clone this project
+$ git clone https://github.com/LimoVincent/fullstack_open_2020_part3.git
+
+# Frontend
+#Dependacies
+axios, bootstrap, react, react - bootstrap,
+# Access
+$ cd fullstack_open_2020_part3
+$ cd part3
+$ cd frontend
+$ npm start
+
+# The server will initialize in the <http://localhost:3000>
+
+-------------------------------------------------
+# backend
+#Dependacies
+cors dotenv, express, mongoose, mongoose-unique-validator, morgan , eslint, nodemon,
+# Access
+$ cd fullstack_open_2020_part3
+$ cd part3
+$ cd backend
+$ npm run dev
+
+# The server will initialize in the <http://localhost:3001>
+
+# check for example;  <http://localhost:3001/api/persons>
+
+```
+
+## :memo: License
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
