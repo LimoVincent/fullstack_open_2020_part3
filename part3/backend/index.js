@@ -1,10 +1,10 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const express = require('express')
 const morgan = require('morgan')
-const mongoose = require('mongoose')
 const cors = require('cors')
-require('dotenv').config()
 const Person = require('./models/person')
-const PORT = process.env.PORT || 3001
 
 const app = express()
 
@@ -16,18 +16,9 @@ app.use(
   morgan(':method :url :status :res[content-length] - :response-time ms :data')
 )
 app.use(cors())
-app.use((error, req, res, next) => {
-  console.log(error.message)
-  if (error === 'CastError') {
-    return res.status(400).send({ error: 'malformated id' })
-  }
-  next(error)
-})
-
-// mongoose.Promise = global.Promise
 
 //info
-app.get('/info', (req, res) => {
+app.get('/info', (req, res, next) => {
   Person.find({})
     .then((persons) => {
       res.send(
@@ -42,9 +33,7 @@ app.get('/info', (req, res) => {
 //GETAll
 app.get('/api/persons', (req, res, next) => {
   Person.find({})
-    .then((persons) => {
-      res.json(persons)
-    })
+    .then((persons) => res.json(persons.map((person) => person.toJSON())))
     .catch((error) => next(error))
 })
 
@@ -63,9 +52,7 @@ app.post('/api/persons', (req, res, next) => {
 
     person
       .save()
-      .then((savedperson) => {
-        res.json(savedperson)
-      })
+      .then((savedperson) => res.json(savedperson.toJSON()))
       .catch((error) => next(error))
   } else {
     return res.status(400).json({
@@ -79,7 +66,7 @@ app.get('/api/persons/:id', (req, res, next) => {
   Person.findById(req.params.id)
     .then((person) => {
       if (person) {
-        res.json(person)
+        res.json(person.toJSON())
       } else {
         res.status(404).send({ error: 'No such person' }).end()
       }
@@ -90,7 +77,7 @@ app.get('/api/persons/:id', (req, res, next) => {
 //DELETEPERSON*
 app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndRemove(req.params.id)
-    .then((deletedperson) => {
+    .then(() => {
       res.status(204).end()
     })
     .catch((error) => next(error))
@@ -106,11 +93,29 @@ app.put('/api/persons/:id', (req, res, next) => {
   }
 
   Person.findByIdAndUpdate(req.params.id, person, { new: true })
-    .then((updatedPerson) => {
-      res.json(updatedPerson)
-    })
+    .then((updatedPerson) => res.json(updatedPerson))
     .catch((error) => next(error))
 })
 
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: 'unknown endpoint' })
+}
+
+app.use(unknownEndpoint)
+
+const errorHandler = (error, req, res, next) => {
+  console.error(error.message)
+
+  if (error.name === 'CastError' && error.kind === 'ObjectId') {
+    return res.status(400).send({ error: 'invalid id' })
+  } else if (error.name === 'ValidationError') {
+    return res.status(400).json({ error: error.message })
+  }
+  next(error)
+}
+
+app.use(errorHandler)
+
+const PORT = process.env.PORT || 3001
 // LISTEN
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
